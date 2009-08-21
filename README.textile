@@ -1,0 +1,33 @@
+h1. Assert Fixtures Test Helpers
+
+Convenience methods to assert that you ended with with specific fixture data.
+This solves the problem where you end up with a list of objects and want to
+make sure they correspond to certain fixtures. This generally involves looping 
+through them and using map() and making sure each one matches. If you don't 
+care about the order, you end up having to sort in some way first so that you 
+can traverse reasonably. It's not awful, but it'a cumbersome.
+
+This uses method_missing to provide additional functions for each of your 
+fixtures:
+
+h3. assert_list_of_N
+
+Example:
+
+    assert_list_of_candy_bars [:almond_joys], CandyBar.find_nutty()
+    assert_list_of_candy_bars [:almond_joys, :m_and_ms], CandyBar.find_nutty()
+
+This asserts that the lists are the same size and have the same items. Any
+difference is reported.
+
+
+h3. assert_set_of_N
+
+Example:
+
+    assert_set_of_candy_bars [:almond_joys], CandyBar.find_nutty()
+    assert_set_of_candy_bars [:almond_joys, :m_and_ms], CandyBar.find_nutty()
+
+This asserts that the lists are the same size and have the same items, but order 
+is ignored.
+
